@@ -16,7 +16,7 @@ async def on_message(message):
         reactions_list = rf.readlines()
 
     if random.randint(0, 1) > 0:
-        await message.add_reaction(random.choice(reactions_list))
+        await message.add_reaction(random.choice(reactions_list).strip())
     else:
         await message.add_reaction(random.choice(arrow_list))
 
