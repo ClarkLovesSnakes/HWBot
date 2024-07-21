@@ -5,6 +5,7 @@ import random
 import logging
 
 intents = discord.Intents.default()
+intents.message_content = True
 intents.reactions = True
 bot = commands.Bot(intents=intents, command_prefix="")
 
@@ -22,10 +23,15 @@ async def on_message(msg):
         await msg.add_reaction(random.choice(arrow_list))
 
 
-async def main():
-    discord.utils.setup_logging(leve=logging.INFO, root=False)
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user} (ID: {bot.user.id})")
+    print("-------------------------------------------")
 
-    # get the token out of the secret toke doc
+
+async def main():
+    discord.utils.setup_logging(level=logging.INFO, root=False)
+
     with open("Token.txt", "r", encoding="utf-8") as fp:
         token = fp.read()
 
