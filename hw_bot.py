@@ -1,4 +1,3 @@
-import pathlib
 import discord
 from discord.ext import commands
 import asyncio
@@ -14,8 +13,7 @@ bot = commands.Bot(intents=intents, command_prefix="")
 async def on_message(msg):
     arrow_list = ["⬆️", "⬇️"]
 
-    reactions_path = pathlib.Path(__file__).parent / "reactions.txt"
-    with open(reactions_path, "r", encoding="utf-8") as rf:
+    with open("reactions.txt", "r", encoding="utf-8") as rf:
         reactions_list = rf.readlines()
 
     if random.randint(0, 1) > 0:
